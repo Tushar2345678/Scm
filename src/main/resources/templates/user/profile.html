@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}"
+>
+  <head>
+    <title data-th-text="${loggedInUser.name}+' |  SCM'">Profile Page</title>
+  </head>
+  <body>
+    <div id="content">
+      <!-- sidebar -->
+
+      <!-- user is logged in : sidebar -->
+
+      <div th:if="${loggedInUser}">
+        <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+      </div>
+
+      <div 
+        class="sm:pl-64 pt-20" 
+        style="height: 1000px"
+      >
+        <div 
+          class="flex items-center justify-center md:pt-32 flex-col"
+        >
+          <!--  profie card -->
+
+        <div 
+          class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-2xl w-full"
+        >
+          <div 
+            class="flex flex-col items-center"
+          >
+            <img 
+              data-th-src="@{${loggedInUser.profilePic}}" 
+              src="path/to/profilePic.jpg" 
+              alt="Profile Photo" 
+              class="w-44 h-44 rounded-full shadow-lg object-cover mb-4"
+            >
+              <h2 class="text-2xl font-semibold mb-2" 
+                data-th-text="${loggedInUser.name}">
+                User Name
+              </h2>
+              <p 
+                class="text-gray-600 mb-2" 
+                data-th-text="${loggedInUser.email}">
+                user.email@example.com
+              </p>
+              <p 
+                class="text-gray-600 mb-2" 
+                data-th-text="${loggedInUser.phoneNumber}">
+                123-456-7890
+              </p>
+
+               <p 
+                class="text-gray-600 mb-4 text-center" 
+                data-th-text="${loggedInUser.roleList}">
+                Role 
+              </p>
+
+              <p 
+                class="text-gray-600 mb-4 text-center" 
+                data-th-text="${loggedInUser.userId}">
+                User Id
+              </p>
+
+              <p 
+                class="text-gray-600 mb-4 text-center" 
+                data-th-text="${loggedInUser.about}">
+                About the user...
+              </p>
+
+              <table
+                class="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400"
+              >
+              <tbody>
+              <tr
+                  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                >
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    <i class="fa-brands w-6 h-6 fa-instagram"></i>
+                  </th>
+                  <td class="px-6 py-4">
+                    <a id="contact_Instagram">www.learncodewithdurgesh.com</a>
+                  </td>
+                </tr>
+                <tr
+                  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                >
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    <i class="fa-brands w-6 h-6 fa-linkedin"></i>
+                  </th>
+                  <td class="px-6 py-4">
+                    <a id="contact_LinkedIn">www.learncodewithdurgesh.com</a>
+                  </td>
+                </tr>
+                <tr
+                  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                >
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    <i class="fa-brands w-6 h-6 fa-x-twitter"></i>
+                  </th>
+                  <td class="px-6 py-4">
+                    <a id="contact_Twitter">www.learncodewithdurgesh.com</a>
+                  </td>
+                </tr>
+                <tr
+                  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                >
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    <i class="fa-brands w-6 h-6 fa-facebook"></i>
+                  </th>
+                  <td class="px-6 py-4">
+                    <a id="contact_Facebook">www.learncodewithdurgesh.com</a>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+
+                <div 
+                  class="w-full flex justify-between pt-4">
+                    <p 
+                      class="text-sm text-gray-500">
+                      Email Verified: 
+                      <span 
+                        class="font-medium text-gray-700" 
+                        id="email-verified" 
+                        data-th-text="${loggedInUser.emailVerified ? 'YES':'NO'}">
+                        No
+                      </span>
+                    </p>
+                    <p 
+                      class="text-sm text-gray-500">
+                      Phone Verified: 
+                      <span 
+                        class="font-medium text-gray-700" 
+                        id="phone-verified" 
+                        data-th-text="${loggedInUser.phoneVerified ? 'YES':'NO'}">
+                        No
+                      </span>
+                    </p>
+                </div>
+
+                <!-- update profile button -->
+              <div class="button-container text-center space-x-6 pt-7"
+                >
+                <button
+                    type="submit"
+                    class="px-3 py-2 dark:bg-blue-600 hover:dark:bg-blue-700 rounded bg-black text-white"
+                  >
+                    Update Profile
+                  </button>
+                  
+                  <!-- delete profile button -->
+
+                  <button
+                    type="reset"
+                    class="px-3 py-2 dark:bg-blue-600 hover:dark:bg-blue-700 rounded bg-black text-white"
+                  >
+                    Delete Profile
+                  </button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      console.log("this is profile page");
+    </script>
+  </body>
+</html>
