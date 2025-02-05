@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.scm.scm20.entities.Contact;
 import com.scm.scm20.entities.User;
-import com.scm.scm20.helpers.ResourceNotFoundException;
 import com.scm.scm20.repositories.ContactRepo;
+import com.scm.scm20.helpers.ResourceNotFoundException;
 import com.scm.scm20.services.ContactService;
 
 @Service
