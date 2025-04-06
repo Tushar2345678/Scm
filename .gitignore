@@ -32,3 +32,10 @@ build/
 ### VS Code ###
 .vscode/
 node_modules
+*.msi
+*.exe
+*.zip
+*.tar.gz
+.idea/
+target/
+mysql-installer-community-8.0.40.0.msi
