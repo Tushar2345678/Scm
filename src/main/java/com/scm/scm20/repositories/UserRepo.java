@@ -17,6 +17,8 @@ public interface UserRepo extends JpaRepository<User, String>{
 
     Optional<User> findByEmailAndPassword(String email, String password);
 
+    Optional<User> findByProviderUserId(String providerUserId);
+
     @Query("SELECT u FROM User u WHERE u.emailToken = :emailToken")
     Optional<User> findByEmailToken(@Param("emailToken") String emailToken);
     

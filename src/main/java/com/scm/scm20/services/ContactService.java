@@ -39,5 +39,7 @@ List<Contact> getByUserId(String userId);
 
 Page<Contact> getByUser(User user,int page,int size,String sortField,String sortDirection);
 
+List<User> getContactUsersOfUser(String userId);
+
 
 }

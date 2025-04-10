@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.scm.scm20.entities.User;
 import com.scm.scm20.forms.UserForm;
-import com.scm.scm20.helpers.Message;
+import com.scm.scm20.helpers.Messages;
 import com.scm.scm20.helpers.MessageType;
 import com.scm.scm20.services.UserService;
 
@@ -89,7 +89,7 @@ public class PageController {
     }
     // Check if email already exists
     if (userService.isUserExistByEmail(userForm.getEmail())) {
-        Message message = Message.builder().content("Email already exists").type(MessageType.blue).build();
+        Messages message = Messages.builder().content("Email already exists").type(MessageType.blue).build();
         session.setAttribute("message", message);
         return "register";
     }
@@ -107,7 +107,7 @@ public class PageController {
         User savedUser = userService.saveUser(user);
         System.out.println("user saved : " + savedUser);
        
-        Message message = Message.builder().content("Registration Successful").type(MessageType.green).build(); 
+        Messages message = Messages.builder().content("Registration Successful").type(MessageType.green).build(); 
         session.setAttribute("message", message);
 
     return "redirect:/login";

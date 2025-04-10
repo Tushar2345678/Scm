@@ -23,7 +23,7 @@ import com.scm.scm20.forms.ContactForm;
 import com.scm.scm20.forms.ContactSearchForm;
 import com.scm.scm20.helpers.AppConstants;
 import com.scm.scm20.helpers.Helper;
-import com.scm.scm20.helpers.Message;
+import com.scm.scm20.helpers.Messages;
 import com.scm.scm20.helpers.MessageType;
 import com.scm.scm20.services.ContactService;
 import com.scm.scm20.services.ImageService;
@@ -62,7 +62,7 @@ public class ContactController {
 
         // validate form
         if(result.hasErrors()){
-            session.setAttribute("message", Message.builder()
+            session.setAttribute("message", Messages.builder()
             .content("Please correct the following errors")
             .type(MessageType.red)
             .build()
@@ -110,7 +110,7 @@ public class ContactController {
 
         //set the message to be displayed on the view
         session.setAttribute("message",  
-            Message.builder()
+            Messages.builder()
                 .content("you have successfully added a new contact")
                 .type(MessageType.green)
                 .build()
@@ -191,7 +191,7 @@ public class ContactController {
         logger.info("contact deleted with id {}",contactId);
 
         session.setAttribute("message", 
-        Message.builder()
+        Messages.builder()
         .content("Contact deleted successfully")
         .type(MessageType.green)
         .build()
@@ -273,7 +273,7 @@ public class ContactController {
     var updateCon = contactService.update(con);
     logger.info("updated contact {}", updateCon);
         
-    model.addAttribute("message", Message.builder().content("Contact Updated Successfully").type(MessageType.green).build());
+    model.addAttribute("message", Messages.builder().content("Contact Updated Successfully").type(MessageType.green).build());
          
         return "redirect:/user/contacts/view/" + contactId;
       }

@@ -61,7 +61,8 @@ public class OAuthAuthentcationSuccessHandler implements AuthenticationSuccessHa
             user.setRoleList(List.of(AppConstants.ROLE_USER));
             user.setEmailVerified(true);
             user.setEnabled(true);
-            user.setPassword("dummy");
+            user.setPassword(UUID.randomUUID().toString()); // random, unguessable
+
 
             if(authorizedClientRegistrationId.equalsIgnoreCase("google")){
 
@@ -89,9 +90,12 @@ public class OAuthAuthentcationSuccessHandler implements AuthenticationSuccessHa
 
             user.setEmail(email);
             user.setProfilePic(picture);
-            user.setName(name);
+            user.setName(name != null ? name : "GitHub User");
             user.setProviderUserId(providerUserId);
             user.setProvider(Providers.GITHUB);
+
+            logger.info("OAuth login successful for: {}", user.getEmail());
+            logger.info("GitHub user name: {}", user.getName());
 
             user.setAbout("This account is created using GitHub");
                 

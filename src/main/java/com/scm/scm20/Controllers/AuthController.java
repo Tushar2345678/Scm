@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.scm.scm20.entities.User;
-import com.scm.scm20.helpers.Message;
+import com.scm.scm20.helpers.Messages;
 import com.scm.scm20.helpers.MessageType;
 import com.scm.scm20.repositories.UserRepo;
 //import com.scm.scm20.services.UserService;
@@ -37,21 +37,21 @@ public class AuthController {
                 user.setEmailVerified(true);
                 user.setEnabled(true);
                 userRepo.save(user);
-                session.setAttribute("message", Message.builder()
+                session.setAttribute("message", Messages.builder()
                     .type(MessageType.green)
                     .content("Email is verified : Account is activated")
                     .build());
                 return "success_page";  
             } 
 
-            session.setAttribute("message", Message.builder()
+            session.setAttribute("message", Messages.builder()
                 .type(MessageType.red)
                 .content("Email is not verified : Invalid Token")
                 .build());
             return "error_page";
         }
         
-        session.setAttribute("message", Message.builder()
+        session.setAttribute("message", Messages.builder()
             .type(MessageType.red)
             .content("Email is not verified : Invalid Token")
             .build());

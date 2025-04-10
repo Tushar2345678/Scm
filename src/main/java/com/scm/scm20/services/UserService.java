@@ -22,6 +22,10 @@ public interface UserService {
 
     User getUserByEmail(String email);
 
+    User getUserByUId(String userId);
+
+    User getUserByProviderUserId(String githubId);
+
     //User getUserByToken(String emailToken);
 
     

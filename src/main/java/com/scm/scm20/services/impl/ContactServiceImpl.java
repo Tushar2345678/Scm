@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.scm.scm20.entities.Contact;
 import com.scm.scm20.entities.User;
 import com.scm.scm20.repositories.ContactRepo;
+import com.scm.scm20.repositories.UserRepo;
 import com.scm.scm20.helpers.ResourceNotFoundException;
 import com.scm.scm20.services.ContactService;
 
@@ -20,6 +21,9 @@ public class ContactServiceImpl implements ContactService{
 
     @Autowired
     private ContactRepo contactRepo;
+
+    @Autowired
+    private UserRepo userRepo;
 
     @Override
     public Contact save(Contact contact) {
@@ -104,6 +108,15 @@ public class ContactServiceImpl implements ContactService{
         
         Sort sort = order.equals("desc")?Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
         var pageable=PageRequest.of(page, size, sort);
-        return contactRepo.findByUserAndPhoneNumberContaining(user, phoneNumberKeyword, pageable);}
+        return contactRepo.findByUserAndPhoneNumberContaining(user, phoneNumberKeyword, pageable);
+    }
+
+    @Override
+    public List<User> getContactUsersOfUser(String userId) {
+    User user = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    List<Contact> contacts = user.getContacts();
+    return contacts.stream().map(contact -> contact.getUser()).toList(); // assuming getUser() returns User
+}
+
 
 }

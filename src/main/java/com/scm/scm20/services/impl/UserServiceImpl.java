@@ -126,4 +126,17 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public User getUserByUId(String userId) {
+    return userRepo.findById(userId)
+            .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
+    }
+
+    public User getUserByProviderUserId(String githubId) {
+        return userRepo.findByProviderUserId(githubId)
+            .orElseThrow(() -> new RuntimeException("No user found with GitHub ID: " + githubId));
+    }
+    
+
+
 }

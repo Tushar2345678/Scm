@@ -9,6 +9,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -45,6 +46,10 @@ public class Contact {
     @ManyToOne
     @JsonIgnore
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "contact_id")
+    private User contact;
 
     @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<SocialLink> links = new ArrayList<>();

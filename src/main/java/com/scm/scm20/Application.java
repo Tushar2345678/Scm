@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @SpringBootApplication
-public class Application  implements CommandLineRunner {
+public class Application implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);

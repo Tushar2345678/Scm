@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Message {
+public class Messages {
 
     private String content;
     @Builder.Default

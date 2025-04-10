@@ -7,7 +7,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
-import com.scm.scm20.helpers.Message;
+import com.scm.scm20.helpers.Messages;
 import com.scm.scm20.helpers.MessageType;
 
 import jakarta.servlet.ServletException;
@@ -26,7 +26,7 @@ public class AuthFailureHandller implements AuthenticationFailureHandler {
                 
                 HttpSession session = request.getSession();
                 session.setAttribute("message", 
-                Message.builder().content("User is disabled, Email with verification link is send on your email id !!").type(MessageType.red).build()
+                Messages.builder().content("User is disabled, Email with verification link is send on your email id !!").type(MessageType.red).build()
                 );
 
                 response.sendRedirect("/login");
